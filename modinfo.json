@@ -1,0 +1,24 @@
+{
+  "author": "wondible",
+  "build": "78071",
+  "category": ["ui", "in-game"],
+  "context": "client",
+  "date": "2015/02/22",
+  "description": "Show the team name in the unit hover box.",
+  "display_name": "Who Dat?",
+  "forum": null,
+  "identifier": "com.wondible.pa.who_dat",
+  "priority": 100,
+  "scenes": {
+    "live_game": [
+      "coui://ui/mods/who_dat/live_game.js"
+    ],
+    "live_game_hover": [
+      "coui://ui/mods/who_dat/live_game_hover.css",
+      "coui://ui/mods/who_dat/live_game_hover.js"
+    ]
+  },
+  "signature": "not yet implemented",
+  "version": "0.1.0"
+}
+
