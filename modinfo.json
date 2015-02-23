@@ -6,7 +6,7 @@
   "date": "2015/02/22",
   "description": "Show the team name in the unit hover box.",
   "display_name": "Who Dat?",
-  "forum": null,
+  "forum": "https://forums.uberent.com/threads/rel-who-dat.68070/",
   "identifier": "com.wondible.pa.who_dat",
   "priority": 100,
   "scenes": {
@@ -19,6 +19,6 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "0.1.0"
+  "version": "1.0.0"
 }
 
