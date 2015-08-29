@@ -1,4 +1,5 @@
-console.log('modded file')
+// !LOCNS:live_game
+console.log('shadowed file')
 var model;
 var handlers = {};
 
@@ -6,8 +7,6 @@ $(document).ready(function () {
 
     var start = /[^\/]*$/;  // ^ : start , \/ : '/', $ : end // as wildcard: /*.json 
     var end = /[.]json$/;
-
-    locAddNamespace('units');
 
     function WorldUnitHoverModel(object) {
         var self = this;
@@ -83,7 +82,7 @@ $(document).ready(function () {
         if ((object.blip || object.ghost) || _.isEmpty(object))   
             self.showHealth(false);
 
-        self.name(object.name ? loc(object.name) : loc('!LOC(live_game_world_popup:unknown.message):Unknown'));
+        self.name(object.name ? loc(object.name) : loc('!LOC:Unknown'));
 
         self.healthFraction((object && object.health && object.health.max) ? object.health.current / object.health.max : 0);
 
@@ -111,15 +110,9 @@ $(document).ready(function () {
             self.icon = ko.computed(function () {
                 var id = self.id();
                 if (!id)
-                    return 'img/build_bar/units/blip.png';
+                    return 'img/build_bar/img_blip.png';
 
-                if (!id.endsWith('.json')) { /* maybe remove a spec tag, eg: foo.json.play -> foo.json */
-                    var strip = /.*\.json/.exec(id);
-                    if (strip) 
-                        id = strip.pop();
-                }
-                id = id.substring(id.search(start), id.search(end));
-                return 'img/build_bar/units/' + id + '.png';
+                return Build.iconForSpecId(id);
             });
 
             var gammaAdjust = function(c) {
@@ -127,8 +120,14 @@ $(document).ready(function () {
             }
 
             if (object.army) {
+                /* the army info that gets packaged up for us only contains colors -- and in the case of a blip, only the primary color */
                 self.primaryColor('rgb(' + gammaAdjust(object.army.primary_color.r) + ',' + gammaAdjust(object.army.primary_color.g) + ',' + gammaAdjust(object.army.primary_color.b) + ')');
-                self.secondaryColor('rgb(' + gammaAdjust(object.army.secondary_color.r) + ',' + gammaAdjust(object.army.secondary_color.g) + ',' + gammaAdjust(object.army.secondary_color.b) + ')');
+
+                if (object.army.secondary_color) {
+                    self.secondaryColor('rgb(' + gammaAdjust(object.army.secondary_color.r) + ',' + gammaAdjust(object.army.secondary_color.g) + ',' + gammaAdjust(object.army.secondary_color.b) + ')');
+                } else {
+                    self.secondaryColor(self.primaryColor());
+                }
             }
 
             if (object.tool_details && object.tool_details.ammo)

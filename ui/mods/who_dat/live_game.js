@@ -13,13 +13,13 @@
       return function (value) {
           var new_hash = JSON.stringify(value);
           if (hash !== new_hash) {
-              api.Panel.message('world_popup_panel', 'player_colors', value);
+              api.Panel.message('unit_hover_info', 'player_colors', value);
           }
           hash = new_hash;
       };
   })());
 
   handlers.request_player_colors = function() {
-    api.Panel.message('world_popup_panel', 'player_colors', model.playerColors());
+    api.Panel.message('unit_hover_info', 'player_colors', model.playerColors());
   }
 })()

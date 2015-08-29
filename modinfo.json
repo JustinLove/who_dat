@@ -1,9 +1,9 @@
 {
   "author": "wondible",
-  "build": "78071",
+  "build": "86765",
   "category": ["ui", "in-game"],
   "context": "client",
-  "date": "2015/02/22",
+  "date": "2015/08/29",
   "description": "Show the team name in the unit hover box.",
   "display_name": "Who Dat?",
   "forum": "https://forums.uberent.com/threads/rel-who-dat.68070/",
@@ -19,6 +19,6 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
 
